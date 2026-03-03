@@ -4,6 +4,7 @@ from models import db
 from models.patient import Patient
 from models.medicine import Medicine
 from models.dose import Dose
+from flask import render_template
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -11,6 +12,22 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+
+
+
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/patients-page")
+def patients_page():
+    return render_template("patients.html")
+
+@app.route("/medicines-page")
+def medicines_page():
+    return render_template("medicines.html")
 
 # ==============================
 # PATIENT APIs
