@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">💊 Medicine Management</div>
+
+    <div class="nav-buttons">
+        <a href="/" class="nav-btn">Dashboard</a>
+        <a href="/patients" class="nav-btn">Patients</a>
+        <a href="/medicines" class="nav-btn">Medicines</a>
+    </div>
+</nav>
+
+<div class="container fade-in">
+
+    {% block content %}
+
+    <!-- Dashboard Content -->
+    <div class="dashboard">
+        <h1 class="dashboard-title">Welcome to Medicine Management System</h1>
+        <p class="dashboard-subtitle">Manage patients and medicines efficiently</p>
+
+        <div class="dashboard-cards">
+
+            <!-- Patients Card -->
+            <a href="/patients" class="dashboard-card">
+                <img src="https://gameoffalls.com/wp-content/uploads/2023/03/Wheelchairs@4x-1200x979.png" alt="Patients">
+                <div class="card-overlay">
+                    <h2>👨‍⚕ Patients</h2>
+                    <p>View, Add & Manage Patients</p>
+                </div>
+            </a>
+
+            <!-- Medicines Card -->
+            <a href="/medicines" class="dashboard-card">
+                <img src="https://img.freepik.com/premium-photo/detailed-setup-medical-supplies-including-syringe-various-pills-stethoscope-laid-out_158236-3275.jpg" alt="Medicines">
+                <div class="card-overlay">
+                    <h2>💊 Medicines</h2>
+                    <p>Manage Medicine Inventory</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    {% endblock %}
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

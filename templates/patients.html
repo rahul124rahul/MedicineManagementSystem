@@ -1,29 +1,52 @@
-{% extends "base.html" %}
-
+{% extends "layout.html" %}
 {% block content %}
 
-<h2>Add Patient</h2>
+<h2 class="page-title">Patients</h2>
 
-<form id="patientForm">
-    <input type="text" id="name" placeholder="Name" required>
-    <input type="number" id="age" placeholder="Age" required>
-    <input type="text" id="gender" placeholder="Gender" required>
-    <input type="text" id="contact" placeholder="Contact" required>
-    <button type="submit">Add Patient</button>
-</form>
+<div class="card smooth-card">
+    <h3>Add New Patient</h3>
 
-<h2>All Patients</h2>
-<table id="patientsTable">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Contact</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
+    <form method="POST" action="/add_patient">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="age" required>
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="text" name="gender" required>
+        </div>
+
+        <button class="btn-main">Add Patient</button>
+    </form>
+</div>
+
+<table class="styled-table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for patient in patients %}
+    <tr>
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.age }}</td>
+        <td>{{ patient.gender }}</td>
+        <td>
+            <a href="/patient/{{ patient.id }}" class="btn-small">Show</a>
+            <a href="/edit_patient/{{ patient.id }}" class="btn-small edit">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
 </table>
 
 {% endblock %}

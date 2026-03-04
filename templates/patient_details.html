@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Patient Details</h2>
+
+<div class="card">
+    <p><b>Name:</b> {{ patient.name }}</p>
+    <p><b>Age:</b> {{ patient.age }}</p>
+    <p><b>Gender:</b> {{ patient.gender }}</p>
+</div>
+
+<hr>
+
+<h3>Add Medicine</h3>
+<form method="POST" action="/add_medicine_to_patient/{{ patient.id }}" class="form-card">
+    <input type="text" name="name" placeholder="Medicine Name" required>
+    <input type="text" name="description" placeholder="Description">
+    <button type="submit" class="btn">Add Medicine</button>
+</form>
+
+<hr>
+
+<h3>Medicines</h3>
+
+{% for med in patient.medicines %}
+<div class="medicine-card">
+    <h4>{{ med.name }}</h4>
+    <p>{{ med.description }}</p>
+
+    <h5>Add Dose</h5>
+    <form method="POST" action="/add_dose/{{ med.id }}">
+        <input type="text" name="dosage_amount" placeholder="Dosage" required>
+        <input type="text" name="schedule" placeholder="Schedule" required>
+        <input type="date" name="start_date" required>
+        <input type="date" name="end_date" required>
+        <button class="small-btn">Add Dose</button>
+    </form>
+
+    <h5>Doses</h5>
+    <ul>
+        {% for dose in med.doses %}
+        <li>
+            {{ dose.dosage_amount }} | {{ dose.schedule }} |
+            {{ dose.start_date }} to {{ dose.end_date }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+{% endblock %}
